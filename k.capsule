@@ -1,0 +1,31 @@
+@use cpp
+
+@name k
+@version 0.0.1
+@description The Kodo shell's capsule
+@author Hackia <dev@hackia.org>
+@license APGL-3.0
+@upstream https://github.com/hackia/capsule
+
+@install
+    @echo Mounting source...
+    @mount-src https://github.com/hackia/capsule/archive/refs/tags/v0.0.1.tar.gz
+    @echo Building...
+    @run cmake . -DCMAKE_BUILD_TYPE=Release
+    @run make
+    @run make install
+    @echo Build completed
+@end
+
+@uninstall
+    @echo Starting uninstall...
+    @run make uninstall
+    @echo Cleaning up...
+    @unmount-src
+    @echo Uninstall completed
+@end
+
+@test
+    @echo Running test suite...
+    @run make test
+@end
